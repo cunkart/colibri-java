@@ -10,7 +10,11 @@ import colibri.lib.Lattice;
 import colibri.lib.Traversal;
 
 
-
+/**
+ * Class for exporting the edges of a concept lattice to an .xml file.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class LatticeWriterXmlEdges {
 	public void write (Lattice lattice, File file) throws IOException {
 		write(lattice, file, Traversal.TOP_ATTR);

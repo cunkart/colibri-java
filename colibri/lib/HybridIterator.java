@@ -10,7 +10,8 @@ import java.util.NoSuchElementException;
  * The <code>next</code> method will return a <code>Comparable</code>
  * object since <code>HybridSet</code> implements 
  * <code>ComparableSet</code>.
- *
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
 class HybridIterator implements Iterator<Comparable> {
 	

@@ -7,9 +7,11 @@ package colibri.lib;
  * By definition a concept <code>u</code> is the upper neighbor of a concept
  * <code>l</code> in a concept lattice, iff the object set of <code>l</code> is
  * a strict subset of the object set of <code>u</code> and there exists no other
- * concept <code>c</code> such that the object set of <code>l</code> is a
+ * concept <code>c</code> in the lattice such that the object set of <code>l</code> is a
  * strict subset of the object set of <code>c</code> and the object set of
  * <code>c</code> is a strict subset of the object set of <code>u</code>.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
 public class Edge {
 	private Concept upper;
@@ -24,7 +26,7 @@ public class Edge {
 	 * @param upper the upper neighbor.
 	 * @param lower the lower neighbor.
 	 */
-	public Edge (Concept upper, Concept lower) {
+	Edge (Concept upper, Concept lower) {
 		if (upper == null || lower == null) {
 			throw new IllegalArgumentException();
 		}
@@ -70,11 +72,12 @@ public class Edge {
 	
 	
 	/**
+	 * Compares the specified object with this <code>Edge</code> for equality.
 	 * Returns <code>true</code> iff <code>object</code> is an
 	 * instance of <code>Edge</code> and 
 	 * <code>getUpper().equals(object.getUpper()) == true</code> and
 	 * <code>getLower().equals(object.getLower()) == true</code>.
-	 * @param object the reference object with which to compare.
+	 * @param object the object to be compared for equality with this <code>Edge</code>.
 	 * @return <code>true</code> iff this object and <code>object</code>
 	 * are logically equal.
 	 */
@@ -89,10 +92,10 @@ public class Edge {
 	
 	
 	/**
-	 * Returns a hash code value for this <code>Edge</code>.
+	 * Returns the hash code value for this <code>Edge</code>.
 	 * <p>
 	 * The hash code value of an <code>Edge</code> is defined as the sum of
-	 * the code values of its concepts.
+	 * the hash code values of its concepts.
 	 * @return a hash code value for this <code>Edge</code>.
 	 */
 	public int hashCode() {

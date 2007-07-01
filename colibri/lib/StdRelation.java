@@ -7,10 +7,11 @@ import java.util.Map.Entry;
 
 /**
  * An abstract class that implements methods of the interface
- * <code>Relation</code> for relations based on <code>java.util.Set</code> objects.
+ * <code>Relation</code>.
  * Methods that are dependent on the exact data structure used by the 
  * implementation must be implemented in the subclasses.
- *
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
 public abstract class StdRelation implements Relation {
 	protected Map<Comparable, ComparableSet> objectMap;
@@ -26,7 +27,7 @@ public abstract class StdRelation implements Relation {
 	 * Activates write protection on this set.
 	 * <p>
 	 * After this method has been called, this set is unmodifiable,
-	 * i.e. if there is a call attempting to change the contents of 
+	 * i.e.&nbsp;if there is a call attempting to change the contents of 
 	 * this set, an exception will be thrown.
 	 * @return <code>true</code>
 	 */
@@ -70,8 +71,8 @@ public abstract class StdRelation implements Relation {
 	
 	
 	/**
-	 * Returns the number of attributes contained in the attribute set of this relation
-	 * @return the number of attributes contained in the attribute set of this relation
+	 * Returns the number of attributes contained in the attribute set of this relation.
+	 * @return the number of attributes contained in the attribute set of this relation.
 	 */
 	public int getSizeAttributes() {
 		return allAttributes.size();
@@ -143,7 +144,7 @@ public abstract class StdRelation implements Relation {
 	 * are returned (unless this relation is an instance of a class that
 	 * provides a guarantee).
 	 * @param object the object whose objects shall be returned.
-	 * @return an iterator over the attributes of <code>object</code>
+	 * @return an iterator over the attributes of <code>object</code>.
 	 */
 	public Iterator<Comparable> getAttributes (Comparable object) {
 		return objectMap.get(object).iterator();
@@ -156,7 +157,7 @@ public abstract class StdRelation implements Relation {
 	 * Note that the set that is returned by this method might be
 	 * unmodifiable.
 	 * @param attribute the attribute whose objects shall be returned.
-	 * @return a set that contains all objects of <code>attribute</code>
+	 * @return a set that contains all objects of <code>attribute</code>.
 	 */
 	public ComparableSet getObjectSet (Comparable attribute) {
 		return attributeMap.get(attribute);
@@ -242,7 +243,7 @@ public abstract class StdRelation implements Relation {
 	
 	/**
 	 * Return <code>true</code> if and only if the pair
-	 * (<code>object</code>, <code>attribute</code> is contained in this relation.
+	 * (<code>object</code>, <code>attribute</code>) is contained in this relation.
 	 * <p>
 	 * If <code>object</code> is <code>null</code> this method will return
 	 * <code>true</code> if and only if <code>attribute</code> is contained
@@ -252,7 +253,8 @@ public abstract class StdRelation implements Relation {
 	 * in the object set of this relation.
 	 * @param object the object.
 	 * @param attribute the attribute.
-	 * @return <code>true</code>, iff the pair (object, attribute) is contained in the relation
+	 * @return <code>true</code>, iff the pair (<code>object</code>, <code>attribute</code>)
+	 * is contained in the relation
 	 */
 	public boolean contains (Object object, Object attribute) {
 		try {

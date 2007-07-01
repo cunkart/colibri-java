@@ -9,11 +9,13 @@ import java.util.TreeSet;
 
 
 /**
- * An iterator over the edges (i.e. pairs of neighboring concepts)
+ * An iterator over the edges (i.e.&nbsp;pairs of neighboring concepts)
  * of the underlying lattice. Traverses the lattice <i>top-down</i> 
  * and <i>depth-first</i>.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
-public class EdgeIteratorTDDF implements Iterator<Edge> {
+class EdgeIteratorTDDF implements Iterator<Edge> {
 	
 	private Lattice lattice;
 	
@@ -25,7 +27,6 @@ public class EdgeIteratorTDDF implements Iterator<Edge> {
 	/**
 	 * Constructs an iterator.
 	 * @param lattice the underlying lattice.
-	 * @param translator the underlying translator.
 	 */
 	EdgeIteratorTDDF(Lattice lattice) {
 		this.lattice = lattice;

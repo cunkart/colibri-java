@@ -21,10 +21,10 @@ public abstract class LatticeImpl implements Lattice {
 	
 	
 	/**
-	 * Returns the join of the concepts contained in
-	 * the collection <code>concepts</code>
-	 * @param concepts the concepts for which the join shall be computed.
-	 * @return the join of the concepts contained in <code>concepts</code>
+	 * Returns the least upper bound of the concepts contained in
+	 * the collection <code>concepts</code>.
+	 * @param concepts the concepts whose least upper bound shall be computed.
+	 * @return the least upper bound of the concepts contained in <code>concepts</code>.
 	 */
 	public Concept join (Collection<Concept> concepts) {
 		ComparableSet attributes = relation.getAllAttributes();
@@ -39,10 +39,10 @@ public abstract class LatticeImpl implements Lattice {
 	
 	
 	/**
-	 * Returns the meet of the concepts contained in
-	 * the collection <code>concepts</code>
-	 * @param concepts the concepts for which the join shall be computed.
-	 * @return the meet of the concepts contained in <code>concepts</code>
+	 * Returns the greatest lower bound of the concepts contained in
+	 * the collection <code>concepts</code>.
+	 * @param concepts the concepts whose greatest lower bound shall be computed.
+	 * @return the greatest lower bound of the concepts contained in <code>concepts</code>
 	 */
 	public Concept meet (Collection<Concept> concepts) {
 		ComparableSet objects = relation.getAllObjects();
@@ -57,7 +57,7 @@ public abstract class LatticeImpl implements Lattice {
 	
 	
 	/**
-	 * Returns the concepts computed from <code>objects</code>.
+	 * Returns the least concept that contains all objects contained in <code>objects</code>.
 	 * <p>
 	 * Returns the concept that contains the common attributes of the
 	 * objects contained in <code>objects</code> and their common objects, 
@@ -78,14 +78,14 @@ public abstract class LatticeImpl implements Lattice {
 	
 	
 	/**
-	 * Returns the concepts computed from<code>attributes</code>.
+	 * Returns the greatest concept that contains all attributes contained in <code>attributes</code>.
 	 * <p>
 	 * Returns the concept that contains the common objects of the
 	 * attributes contained in <code>attributes</code> and their common attributes,
 	 * but no other objects or attributes.
 	 * <p>
 	 * More formally, returns the concept (<code>attributes</code>', <code>attributes</code>'').
-	 * @param attributess the set of attributes from which the concept shall be computed.
+	 * @param attributes the set of attributes from which the concept shall be computed.
 	 * @return the concept computed from <code>attributes</code>.
 	 */
 	public Concept conceptFromAttributes (Collection<Comparable> attributes) throws IllegalArgumentException {
@@ -99,7 +99,7 @@ public abstract class LatticeImpl implements Lattice {
 	
 	
 	/**
-	 * Returns the <i>top</i> concept, i.e. the concept that contains
+	 * Returns the <i>top</i> concept, i.e.&nbsp;the concept that contains
 	 * all objects.
 	 * @return the <i>top</i> concept.
 	 */
@@ -109,7 +109,7 @@ public abstract class LatticeImpl implements Lattice {
 	
 	
 	/**
-	 * Returns the <i>bottom</i> concept, i.e. the concept that contains
+	 * Returns the <i>bottom</i> concept, i.e.&nbsp;the concept that contains
 	 * all attributes.
 	 * @return the <i>bottom</i> concept.
 	 */
@@ -123,8 +123,8 @@ public abstract class LatticeImpl implements Lattice {
 	 * <p>
 	 * There are no guarantees concerning the order in which the lower
 	 * neighbors are returned. The exact order may depend on the
-	 * implementation of this method and on the implementation of the
-	 * class of the underlying relation and on other factors.
+	 * implementation of the class of the underlying relation and
+	 * on other factors.
 	 * @param concept the concept whose lower neighbors shall be computed.
 	 * @return an iterator over the lower neighbors of <code>concept</code>.
 	 */
@@ -166,8 +166,8 @@ public abstract class LatticeImpl implements Lattice {
 	 * <p>
 	 * There are no guarantees concerning the order in which the upper
 	 * neighbors are returned. The exact order may depend on the
-	 * implementation of this method and on the implementation of the
-	 * class of the underlying relation and on other factors.
+	 * implementation of the class of the underlying relation and
+	 * on other factors.
 	 * @param concept the concept whose upper neighbors shall be computed.
 	 * @return an iterator over the upper neighbors of <code>concept</code>.
 	 */
@@ -213,8 +213,8 @@ public abstract class LatticeImpl implements Lattice {
 	 * @param trav the desired traversal.
 	 * @return an iterator over all concepts of this lattice.
 	 */
-	public Iterator<Concept> conceptIterator(Traversal order) {
-		switch (order) {
+	public Iterator<Concept> conceptIterator(Traversal trav) {
+		switch (trav) {
 		case BOTTOM_OBJ:
 			return new ConceptIteratorBUBF(this, ConceptOrder.OBJ_STD);
 		case BOTTOM_OBJSIZE:
@@ -248,11 +248,20 @@ public abstract class LatticeImpl implements Lattice {
 	 * <p>
 	 * The order in which the edges (pairs of upper and lower neighbors)
 	 * are returned depends on the <code>trav</code> argument.
-	 * @param order the desired traversal.
+	 * <p>
+	 * A top-down-breadth-first traversal guarantees that all edges having
+	 * the same upper neighbor will be returned consecutively. However,
+	 * there are no guarantees concerning the order in which the edges
+	 * having the same upper neighbor are returned.
+	 * Similarly, a bottom-up-breadth-first traversal guarantees that
+	 * all edges having the same lower neighbor will be returned consecutively
+	 * but there are no guarantees concerning the order in which the edges
+	 * having the same lower neighbor are returned.
+	 * @param trav the desired traversal.
 	 * @return an iterator over all edges of this lattice.
 	 */
-	public Iterator<Edge> edgeIterator(Traversal order) {
-		switch (order) {
+	public Iterator<Edge> edgeIterator(Traversal trav) {
+		switch (trav) {
 		case BOTTOM_OBJ:
 			return new EdgeIteratorBUBF(this, ConceptOrder.OBJ_STD);
 		case BOTTOM_OBJSIZE:
@@ -285,9 +294,9 @@ public abstract class LatticeImpl implements Lattice {
 	 * to be returned by this iterator is specified by
 	 * the three arguments <code>supp</code>, <code>conf</code> and 
 	 * <code>diff</code>.
-	 * @param supp the minimal support, i.e. the minimal number of objects contained
+	 * @param supp the minimal support, i.e.&nbsp;the minimal number of objects contained
 	 * in the lower neighbor.
-	 * @param conf the minimal confidence, i.e. the minimal fraction l/u, where
+	 * @param conf the minimal confidence, i.e.&nbsp;the minimal fraction l/u, where
 	 * l is the number of objects in the lower neighbor and u is the
 	 * number of objects in the upper neighbor. Must be a value between
 	 * 0 and 1.

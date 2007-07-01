@@ -12,8 +12,10 @@ import java.util.TreeSet;
  * An iterator over the concepts contained in the underlying
  * lattice. Traverses the lattice <i>bottom-up</i> and 
  * <i>depth-first</i>.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
-public class ConceptIteratorBUDF implements Iterator<Concept> {
+class ConceptIteratorBUDF implements Iterator<Concept> {
 	
 	private Lattice lattice;
 	

@@ -13,8 +13,10 @@ import colibri.lib.Agenda;
  * An iterator over the concepts contained in the underlying
  * lattice. Traverses the lattice <i>top-down</i> and 
  * <i>breadth-first</i>.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
-public class ConceptIteratorTDBF implements Iterator<Concept> {
+class ConceptIteratorTDBF implements Iterator<Concept> {
 	
 	private Lattice lattice;
 	private Comparator<Concept> comparator;
@@ -25,7 +27,6 @@ public class ConceptIteratorTDBF implements Iterator<Concept> {
 	 * Constructs an iterator that iterates over the concepts
 	 * of the given lattice in the specified order.
 	 * @param lattice the underlying lattice.
-	 * @param translator the underlying translator.
 	 * @param order the order to be used to compare
 	 * the concepts.
 	 */

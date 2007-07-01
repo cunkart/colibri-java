@@ -21,7 +21,7 @@ import java.util.TreeSet;
  * contained in the agenda and removes it from the agenda.
  * @param <T> The type of the elements stored in the agenda.
  * @author Daniel N. Goetzmann
- * 
+ * @version 1.0
  */
 class Agenda<T> {
 	private SortedSet<T> agenda;
@@ -35,7 +35,7 @@ class Agenda<T> {
 	 * The comparator is used to order the concepts added
 	 * to the agenda. For the agenda to work properly it is
 	 * necessary that the objects added to it are mutually
-	 * comparable, i.e. <code>c.compare(e1, e2)</code> must
+	 * comparable, i.e.&nbsp;<code>c.compare(e1, e2)</code> must
 	 * not throw an exception for any elements <code>e1</code>,
 	 * <code>e2</code> in the agenda.
 	 * <p>

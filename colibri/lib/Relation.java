@@ -4,8 +4,10 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Representation of a  context, i.e. a binary relation between a set
+ * Representation of a context, i.e.&nbsp;a binary relation between a set
  * of objects and a set of attributes.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
 public interface Relation {
 	
@@ -13,7 +15,7 @@ public interface Relation {
 	 * Activates write protection on this relation.
 	 * <p>
 	 * After this method has been called, this relation shall be unmodifiable,
-	 * i.e. if there is a call attempting to change the contents of 
+	 * i.e.&nbsp;if there is a call attempting to change the contents of 
 	 * this set, an exception will be thrown.
 	 * 
 	 * Note that the implementation of this method is optional in classes
@@ -30,8 +32,8 @@ public interface Relation {
 	
 	
 	/**
-	 * Returns the number of attributes contained in the attribute set of this relation
-	 * @return the number of attributes contained in the attribute set of this relation
+	 * Returns the number of attributes contained in the attribute set of this relation.
+	 * @return the number of attributes contained in the attribute set of this relation.
 	 */
 	public int getSizeAttributes();
 	
@@ -84,7 +86,7 @@ public interface Relation {
 	 * are returned (unless this relation is an instance of a class that
 	 * provides a guarantee).
 	 * @param object the object whose objects shall be returned.
-	 * @return an iterator over the attributes of <code>object</code>
+	 * @return an iterator over the attributes of <code>object</code>.
 	 */
 	public Iterator<Comparable> getAttributes (Comparable object);
 	
@@ -95,7 +97,7 @@ public interface Relation {
 	 * Note that the set that is returned by this method might be
 	 * unmodifiable.
 	 * @param attribute the attribute whose objects shall be returned.
-	 * @return a set that contains all objects of <code>attribute</code>
+	 * @return a set that contains all objects of <code>attribute</code>.
 	 */
 	public ComparableSet getObjectSet (Comparable attribute);
 	
@@ -105,7 +107,7 @@ public interface Relation {
 	 * Note that the set that is returned by this method might be
 	 * unmodifiable.
 	 * @param object the object whose attributes shall be returned.
-	 * @return a set that contains all attribuets of <code>object</code>.
+	 * @return a set that contains all attributes of <code>object</code>.
 	 */
 	public ComparableSet getAttributeSet (Comparable object);
 	
@@ -117,10 +119,14 @@ public interface Relation {
 	 * <code>a</code> that are contained in <code>coll</code>
 	 * the pair (<code>o</code>, <code>a</code>) is contained in
 	 * this relation.
-	 * @param set the set of attributes 
-	 * @return the set of objects that all have the attributes contained in set
+	 * @param attributes a collection of attributes. 
+	 * @return the set of objects that have all the attributes
+	 * contained in the collection <code>attributes</code>.
+	 * @throws IllegalArgumentException if <code>attributes</code> is <code>null</code>
+	 * one of the elements contained in <code>attributes</code> is not
+	 * contained in the attribute set of this relation.
 	 */
-	public ComparableSet commonObjects(Collection<Comparable> coll) throws IllegalArgumentException;
+	public ComparableSet commonObjects(Collection<Comparable> attributes) throws IllegalArgumentException;
 	
 	
 	/**
@@ -132,10 +138,14 @@ public interface Relation {
 	 * <code>o</code> that are contained in <code>coll</code>
 	 * the pair (<code>o</code>, <code>a</code>) is contained in
 	 * this relation.
-	 * @param set the set of objects
-	 * @return the set of attributes all objects contained in set have
+	 * @param objects a collection of objects.
+	 * @return the set of attributes all objects contained in the
+	 * collection <code>objects</code> have.
+	 * @throws IllegalArgumentException if <code>objects</code> is <code>null</code>
+	 * or one of the elements contained in <code>objects</code> is not
+	 * contained in the object set of this relation.
 	 */
-	public ComparableSet commonAttributes(Collection<Comparable> coll) throws IllegalArgumentException;
+	public ComparableSet commonAttributes(Collection<Comparable> objects) throws IllegalArgumentException;
 	
 	
 	/**
@@ -150,16 +160,21 @@ public interface Relation {
 	 * relation but <code>attribute</code> will be added to the attribute set of this relation.
 	 * Similarly, if <code>attribute</code> is <code>null</code> no pair will be
 	 * added to this relation but <code>object</code> will be added to the
-	 * attribute set of this relation.
-	 * @param object the object. If this is <code>null</code>, only the attribute will be added
-	 * @param attribute the attribute. If this is null, only the object will be added to the
-	 * 
+	 * object set of this relation.
+	 * @param object the object. If this is <code>null</code>, only the <code>attribute</code> will be added
+	 * to the attribute set.
+	 * @param attribute the attribute. If this is null, only the <code>object</code> will be added
+	 * to the object set
+	 * @throws ClassCastException if <code>object</code> is not mutually comparable with the objects contained
+	 * in the object set of this relation or <code>attribute</code> is not mutually comparable with the
+	 * attributes contained in the attribute set of this relation.
+	 * @throws UnsupportedOperationException if this relation is write protected.
 	 */
 	public void add(Comparable object, Comparable attribute) throws ClassCastException, UnsupportedOperationException;
 	
 	
 	/**
-	 * Removes the pair (<code>object</code>, <code>attribute</code>) from this relation
+	 * Removes the pair (<code>object</code>, <code>attribute</code>) from this relation.
 	 * <p>
 	 * If <code>object</code> is <code>null</code> then <code>attribute</code> will
 	 * be removed from the attribute set of this relation and all pairs whose attribute
@@ -169,13 +184,14 @@ public interface Relation {
 	 * is <code>object</code> will be removed from this relation.
 	 * @param object the object.
 	 * @param attribute the attribute.
+	 * @throws UnsupportedOperationException if this relation is write protected.
 	 */
 	public void remove(Comparable object, Comparable attribute) throws UnsupportedOperationException;
 	
 	
 	/**
-	 * Return <code>true</code> if and only if the pair
-	 * (<code>object</code>, <code>attribute</code> is contained in this relation.
+	 * Returns <code>true</code> if and only if the pair
+	 * (<code>object</code>, <code>attribute</code>) is contained in this relation.
 	 * <p>
 	 * If <code>object</code> is <code>null</code> this method will return
 	 * <code>true</code> if and only if <code>attribute</code> is contained
@@ -185,10 +201,8 @@ public interface Relation {
 	 * in the object set of this relation.
 	 * @param object the object.
 	 * @param attribute the attribute.
-	 * @return <code>true</code>, iff the pair (object, attribute) is contained in the relation
+	 * @return <code>true</code>, iff the pair (<code>object</code>, <code>attribute</code>)
+	 * is contained in the relation.
 	 */
 	public boolean contains (Object object, Object attribute);
-
-
-
 }

@@ -9,7 +9,7 @@ import java.util.Vector;
  * A class responsible for the translation between <code>Comparable</code>
  * objects and integers for the bitset representation.
  * @author Daniel N. Goetzmann
- *
+ * @version 1.0
  */
 class HybridTranslator {
 	private int size;
@@ -53,7 +53,7 @@ class HybridTranslator {
 	/**
 	 * Returns the <code>Comparable</code> object represented by <code>i</code>
 	 * as determined by this translator.
-	 * @param c the integer whose <code>Comparable</code> translation
+	 * @param i the integer whose <code>Comparable</code> translation
 	 * shall be returned.
 	 * @return the <code>Comparable</code> translation of <code>i</code>.
 	 */
@@ -64,7 +64,7 @@ class HybridTranslator {
 	
 	/**
 	 * Returns the size of the set associated with this translator, 
-	 * i.e. the set passed to the construtor.
+	 * i.e.&nbsp;the set passed to the construtor.
 	 * @return the size of the set associated with this translator.
 	 */
 	int getSize() {

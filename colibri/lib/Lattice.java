@@ -10,7 +10,7 @@ import java.util.Iterator;
  * A <code>Lattice</code> object represents the concept lattice
  * of a given context. Since a context is typically represented
  * by a <code>Relation</code> object, the classes implementing
- * the <code>Lattice</code> should provide a constructor with
+ * the <code>Lattice</code> interface should provide a constructor with
  * a single argument of type <code>Relation</code>, which creates
  * a lattice for that relation. Depending on the concrete
  * implementation, changing a relation after it has been passed
@@ -32,24 +32,24 @@ import java.util.Iterator;
  */
 public interface Lattice {
 	/**
-	 * Returns the join of the concepts contained in
-	 * the collection <code>concepts</code>
-	 * @param concepts the concepts for which the join shall be computed.
-	 * @return the join of the concepts contained in <code>concepts</code>
+	 * Returns the least upper bound of the concepts contained in
+	 * the collection <code>concepts</code>.
+	 * @param concepts the concepts whose least upper bound shall be computed.
+	 * @return the least upper bound of the concepts contained in <code>concepts</code>.
 	 */
 	public Concept join (Collection<Concept> concepts);
 	
 	/**
-	 * Returns the meet of the concepts contained in
-	 * the collection <code>concepts</code>
-	 * @param concepts the concepts for which the join shall be computed.
-	 * @return the meet of the concepts contained in <code>concepts</code>
+	 * Returns the greatest lower bound of the concepts contained in
+	 * the collection <code>concepts</code>.
+	 * @param concepts the concepts whose greatest lower bound shall be computed.
+	 * @return the greatest lower bound of the concepts contained in <code>concepts</code>.
 	 */
 	public Concept meet (Collection<Concept> concepts);
 	
 	
 	/**
-	 * Returns the concepts computed from <code>objects</code>.
+	 * Returns the least concept that contains all objects contained in <code>objects</code>.
 	 * <p>
 	 * Returns the concept that contains the common attributes of the
 	 * objects contained in <code>objects</code> and their common objects, 
@@ -62,28 +62,28 @@ public interface Lattice {
 	public Concept conceptFromObjects (Collection<Comparable> objects) throws IllegalArgumentException;
 	
 	/**
-	 * Returns the concepts computed from<code>attributes</code>.
+	 * Returns the greatest concept that contains all attributes contained in <code>attributes</code>.
 	 * <p>
 	 * Returns the concept that contains the common objects of the
 	 * attributes contained in <code>attributes</code> and their common attributes,
 	 * but no other objects or attributes.
 	 * <p>
 	 * More formally, returns the concept (<code>attributes</code>', <code>attributes</code>'').
-	 * @param attributess the set of attributes from which the concept shall be computed.
+	 * @param attributes the set of attributes from which the concept shall be computed.
 	 * @return the concept computed from <code>attributes</code>.
 	 */
 	public Concept conceptFromAttributes (Collection<Comparable> attributes) throws IllegalArgumentException;
 	
 	
 	/**
-	 * Returns the <i>top</i> concept, i.e. the concept that contains
+	 * Returns the <i>top</i> concept, i.e.&nbsp;the concept that contains
 	 * all objects.
 	 * @return the <i>top</i> concept.
 	 */
 	public Concept top ();
 	
 	/**
-	 * Returns the <i>bottom</i> concept, i.e. the concept that contains
+	 * Returns the <i>bottom</i> concept, i.e.&nbsp;the concept that contains
 	 * all attributes.
 	 * @return the <i>bottom</i> concept.
 	 */
@@ -134,10 +134,19 @@ public interface Lattice {
 	 * <p>
 	 * The order in which the edges (pairs of upper and lower neighbors)
 	 * are returned depends on the <code>trav</code> argument.
-	 * @param order the desired traversal.
+	 * <p>
+	 * A top-down-breadth-first traversal guarantees that all edges having
+	 * the same upper neighbor will be returned consecutively. However,
+	 * there are no guarantees concerning the order in which the edges
+	 * having the same upper neighbor are returned.
+	 * Similarly, a bottom-up-breadth-first traversal guarantees that
+	 * all edges having the same lower neighbor will be returned consecutively
+	 * but there are no guarantees concerning the order in which the edges
+	 * having the same lower neighbor are returned.
+	 * @param trav the desired traversal.
 	 * @return an iterator over all edges of this lattice.
 	 */
-	public Iterator<Edge> edgeIterator(Traversal order);
+	public Iterator<Edge> edgeIterator(Traversal trav);
 	
 	
 	/**
@@ -146,9 +155,9 @@ public interface Lattice {
 	 * to be returned by this iterator is specified by
 	 * the three arguments <code>supp</code>, <code>conf</code> and 
 	 * <code>diff</code>.
-	 * @param supp the minimal support, i.e. the minimal number of objects contained
+	 * @param supp the minimal support, i.e.&nbsp;the minimal number of objects contained
 	 * in the lower neighbor.
-	 * @param conf the minimal confidence, i.e. the minimal fraction l/u, where
+	 * @param conf the minimal confidence, i.e.&nbsp;the minimal fraction l/u, where
 	 * l is the number of objects in the lower neighbor and u is the
 	 * number of objects in the upper neighbor. Must be a value between
 	 * 0 and 1.

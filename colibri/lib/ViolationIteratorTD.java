@@ -7,9 +7,9 @@ import java.util.NoSuchElementException;
  * An iterator that iterates over neighboring concepts of a
  * concept lattice that are similar to each other.
  * @author Daniel N. Goetzmann
- *
+ * @version 1.0
  */
-public class ViolationIteratorTD implements Iterator<Edge>{
+class ViolationIteratorTD implements Iterator<Edge>{
 	
 	private int supp;
 	private float conf;
@@ -22,9 +22,9 @@ public class ViolationIteratorTD implements Iterator<Edge>{
 	/**
 	 * 
 	 * @param edgeIterator
-	 * @param supp the minimal support, i.e. the minimal number of objects contained
+	 * @param supp the minimal support, i.e.&nbsp;the minimal number of objects contained
 	 * in the lower neighbor.
-	 * @param conf the minimal confidence, i.e. the minimal fraction l/u, where
+	 * @param conf the minimal confidence, i.e.&nbsp;the minimal fraction l/u, where
 	 * l is the number of objects in the lower neighbor and u is the
 	 * number of objects in the upper neighbor. Must be a value between
 	 * 0 and 1.

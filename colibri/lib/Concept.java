@@ -2,7 +2,7 @@ package colibri.lib;
 
 
 /**
- * Representation of a formal concept, i.e. a pair of an object set and an
+ * Representation of a formal concept, i.e.&nbsp;a pair of an object set and an
  * attribute set.
  * @author Daniel N. Goetzmann
  * @version 1.0
@@ -15,12 +15,12 @@ public class Concept {
 	
 	/**
 	 * Constructs a formal concept.
-	 * @param objects the set of objects
-	 * @param attributes the set of attributes
+	 * @param objects the set of objects of this concept.
+	 * @param attributes the set of attributes of this concept.
 	 * @throws IllegalArgumentException if <code>objects</code>
 	 * or <code>attributes</code> is <code>null</code>.
 	 */
-	public Concept (ComparableSet objects, ComparableSet attributes) {
+	Concept (ComparableSet objects, ComparableSet attributes) {
 		if (objects == null || attributes == null) {
 			throw new IllegalArgumentException();
 		}
@@ -43,8 +43,8 @@ public class Concept {
 	
 	
 	/**
-	 * returns the set of attributes belonging to this concept
-	 * @return the set of attributes belonging to this concept
+	 * Returns the set of attributes belonging to this concept.
+	 * @return the set of attributes belonging to this concept.
 	 */
 	public ComparableSet getAttributes () {
 		return attributes;
@@ -52,7 +52,8 @@ public class Concept {
 	
 	
 	/**
-	 * returns a string representation of this concept.
+	 * Returns a string representation of this concept.
+	 * @return a string representation of this concept.
 	 */
 	public String toString () {
 		return ("objects:" + objects.toString() + ", attributes:" + attributes.toString());
@@ -61,9 +62,10 @@ public class Concept {
 	
 	/**
 	 * Compares the specified object with this concept for equality.
-	 * Returns <code> true iff the specified object is also a <code>Concept<code>
+	 * Returns <code>true</code> iff the specified object is also a <code>Concept<code>
 	 * and the object set and the attribute set of this concept are equal to
 	 * the object set and the attribute set of the other concept, respectively.
+	 * @param object the object to be compared for equality with this concept.
 	 * @return <code>true</code> iff the specified object is equal to this concept.
 	 */
 	public boolean equals(Object object) {
@@ -79,9 +81,9 @@ public class Concept {
 	/**
 	 * Returns the hash code value for this concept.
 	 * <p>
-	 * The hash code of a <code>Concept<code> is defined as the sum of the
-	 * hash codes of its object and attribute sets.
-	 * @returns the hash code value for this concept.
+	 * The hash code value of a <code>Concept<code> is defined as the sum of the
+	 * hash code values of its object and attribute sets.
+	 * @return the hash code value for this concept.
 	 */
 	public int hashCode() {
 		return objects.hashCode() + attributes.hashCode();
