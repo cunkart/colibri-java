@@ -9,7 +9,7 @@ import java.util.Map;
  * A class that implements the interface <code>Relation</code> using
  * <code>HybridSet</code> objects.
  * @author Daniel N. Goetzmann
- *
+ * @version 1.0
  */
 class HybridRelation implements Relation {
 	

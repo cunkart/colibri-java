@@ -7,7 +7,9 @@ import java.util.NoSuchElementException;
 
 /**
  * A class that implements the interface <code>Relation</code>
- * using <code>HashSet</code> objects.
+ * using <code>ComparableHashSet</code> objects.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
 public class HashRelation extends StdRelation {
 	/**
@@ -35,11 +37,16 @@ public class HashRelation extends StdRelation {
 	 * Similarly, if <code>attribute</code> is <code>null</code> no pair will be
 	 * added to this relation but <code>object</code> will be added to the
 	 * attribute set of this relation.
-	 * @param object the object. If this is <code>null</code>, only the attribute will be added
-	 * @param attribute the attribute. If this is null, only the object will be added to the
-	 * 
+	 * @param object the object. If this is <code>null</code>, only the <code>attribute</code> will be added
+	 * to the attribute set.
+	 * @param attribute the attribute. If this is null, only the <code>object</code> will be added
+	 * to the object set
+	 * @throws ClassCastException if <code>object</code> is not mutually comparable with the objects contained
+	 * in the object set of this relation or <code>attribute</code> is not mutually comparable with the
+	 * attributes contained in the attribute set of this relation.
+	 * @throws UnsupportedOperationException if this relation is write protected.
 	 */
-	public void add(Comparable object, Comparable attribute) throws ClassCastException {
+	public void add(Comparable object, Comparable attribute) throws ClassCastException, UnsupportedOperationException {
 		
 		if (changesDisallowed) {
 			throw new UnsupportedOperationException();
@@ -77,8 +84,15 @@ public class HashRelation extends StdRelation {
 	 * <code>a</code> that are contained in <code>coll</code>
 	 * the pair (<code>o</code>, <code>a</code>) is contained in
 	 * this relation.
-	 * @param set the set of attributes 
-	 * @return the set of objects that all have the attributes contained in set
+	 * @param attributes a collection of attributes. 
+	 * @return the set of objects that have all the attributes
+	 * contained in the collection <code>attributes</code>.
+	 * @throws IllegalArgumentException if <code>attributes</code> is <code>null</code>
+	 * one of the elements contained in <code>attributes</code> is not
+	 * contained in the attribute set of this relation.
+	 * @throws IllegalArgumentException if <code>attributes</code> is <code>null</code>
+	 * one of the elements contained in <code>attributes</code> is not
+	 * contained in the attribute set of this relation.
 	 */
 	public ComparableSet commonObjects(Collection<Comparable> attributes) throws IllegalArgumentException {
 		if (attributes == null)
@@ -119,8 +133,12 @@ public class HashRelation extends StdRelation {
 	 * <code>o</code> that are contained in <code>coll</code>
 	 * the pair (<code>o</code>, <code>a</code>) is contained in
 	 * this relation.
-	 * @param set the set of objects
-	 * @return the set of attributes all objects contained in set have
+	 * @param objects a collection of objects.
+	 * @return the set of attributes all objects contained in the
+	 * collection <code>objects</code> have.
+	 * @throws IllegalArgumentException if <code>objects</code> is <code>null</code>
+	 * or one of the elements contained in <code>objects</code> is not
+	 * contained in the object set of this relation.
 	 */
 	public ComparableSet commonAttributes(Collection<Comparable> objects) throws IllegalArgumentException {
 		if (objects == null)

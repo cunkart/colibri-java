@@ -15,6 +15,11 @@ import colibri.lib.Relation;
 import colibri.lib.TreeRelation;
 
 
+/**
+ * Class for importing a binary relation from an .xml file.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class RelationReaderXML extends DefaultHandler {
 	
 	private String currentObject = null;

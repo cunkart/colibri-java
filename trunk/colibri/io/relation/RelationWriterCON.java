@@ -7,7 +7,11 @@ import java.util.Iterator;
 import colibri.lib.Relation;
 
 
-
+/**
+ * Class for exporting a binary relation to a .con file.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class RelationWriterCON {
 	
 	/**

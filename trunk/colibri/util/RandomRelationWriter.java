@@ -11,7 +11,12 @@ import colibri.lib.Relation;
 
 
 
-
+/**
+ * Creates a random binary relation and exports it to
+ * a .con or .xml file.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class RandomRelationWriter {
 	public static void main (String args[]) throws IOException {
 		try {

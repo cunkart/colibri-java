@@ -8,7 +8,11 @@ import colibri.lib.TreeRelation;
 
 
 
-
+/**
+ * Creates a random binary relation.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class RandomRelationGenerator {
 	public RandomRelationGenerator() {
 		

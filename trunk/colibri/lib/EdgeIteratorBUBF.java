@@ -10,11 +10,13 @@ import colibri.lib.Agenda;
 
 
 /**
- * An iterator over the edges (i.e. pairs of neighboring concepts)
+ * An iterator over the edges (i.e.&nbsp;pairs of neighboring concepts)
  * of the underlying lattice. Traverses the lattice <i>bottom-up</i> 
  * and <i>breadth-first</i>.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
-public class EdgeIteratorBUBF implements Iterator<Edge> {
+class EdgeIteratorBUBF implements Iterator<Edge> {
 	
 	private Lattice lattice;
 	private Comparator<Concept> comparator;
@@ -26,7 +28,6 @@ public class EdgeIteratorBUBF implements Iterator<Edge> {
 	/**
 	 * Constructs an iterator.
 	 * @param lattice the underlying lattice.
-	 * @param translator the underlying translator.
 	 * @param order the order to be used to compare compare
 	 * the concepts.
 	 */

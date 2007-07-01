@@ -5,11 +5,12 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * 
+ * This class implements the <code>ComparableSet</code> interface
+ * and extends <code>java.util.TreeSet</code>.
  * @author Daniel N. Goetzmann
- *
+ * @version 1.0
  */
-public class ComparableTreeSet extends TreeSet<Comparable> implements ComparableSet {
+class ComparableTreeSet extends TreeSet<Comparable> implements ComparableSet {
 	
 	
 	/**
@@ -43,7 +44,7 @@ public class ComparableTreeSet extends TreeSet<Comparable> implements Comparable
 	 * Activate write protection on this set.
 	 * <p>
 	 * After this method has been called, this set shall be unmodifiable,
-	 * i.e. if there is a call attempting to change the contents of 
+	 * i.e.&nbsp;if there is a call attempting to change the contents of 
 	 * this set, an exception will be thrown.
 	 * @return iff write protection is activated.
 	 */
@@ -63,7 +64,7 @@ public class ComparableTreeSet extends TreeSet<Comparable> implements Comparable
 	 * the other set.
 	 * <p>
 	 * Thus, a subset always lexically precedes its superset. However,
-	 * the converse is not true, i.e. the lexically smaller set is not
+	 * the converse is not true, i.e.&nbsp;the lexically smaller set is not
 	 * always a subset of a set that is lexically greater.
 	 * @param anotherSet the <code>ComparableSet</code> to be compared.
 	 * @return the value 0 if the argument set is equal to this set;
@@ -71,9 +72,9 @@ public class ComparableTreeSet extends TreeSet<Comparable> implements Comparable
 	 * the argument set; a value greater than zero if this set is
 	 * lexically greater than the argument set.
 	 */
-	public int compareTo(Object o) {
+	public int compareTo(Object anotherSet) {
 		Iterator thisIterator = this.iterator();
-		Iterator otherIterator = ((SortedSet)o).iterator();
+		Iterator otherIterator = ((SortedSet)anotherSet).iterator();
 		
 		while (thisIterator.hasNext() && otherIterator.hasNext()) {
 			Comparable thisElement = (Comparable)thisIterator.next();
@@ -126,7 +127,7 @@ public class ComparableTreeSet extends TreeSet<Comparable> implements Comparable
 	
 	/**
 	 * Returns <code>true</code> if this set contains none of the elements
-	 * of the specified argument set, i.e. if the sets are <i>disjoint</i>.
+	 * of the specified argument set, i.e.&nbsp;if the sets are <i>disjoint</i>.
 	 * @param set set to be checked for being disjoint with this set.
 	 * @return <code>true</code> if this set contains none of the elements of the
 	 * specified argument set.

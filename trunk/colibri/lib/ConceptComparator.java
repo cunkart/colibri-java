@@ -6,14 +6,14 @@ import java.util.Comparator;
  * A comparator that imposes a total ordering on concepts.
  * <p>
  * The ordering imposed by this comparator is consistent with
- * equals, i.e. <code>compare(c1, c2)</code> returns 0 if and only if
+ * equals, i.e.&nbsp;<code>compare(c1, c2)</code> returns 0 if and only if
  * <code>c1.equals(c2)</code> returns <code>true</code>, provided
  * that the <code>c1</code> and <code>c2</code> belong to the same
  * concept lattice.
  * @author Daniel N. Goetzmann
- *
+ * @version 1.0
  */
-public class ConceptComparator implements Comparator<Concept> {
+class ConceptComparator implements Comparator<Concept> {
 	
 	private ConceptOrder order;
 	private int factor;
@@ -56,7 +56,8 @@ public class ConceptComparator implements Comparator<Concept> {
 	 * @param factor the factor by which the result of the comparation
 	 * will be multiplied.
 	 * @throws IllegalArgumentException if <code>factor == 0</code>
-	 */ConceptComparator(ConceptOrder order, int factor) throws IllegalArgumentException {
+	 */
+	ConceptComparator(ConceptOrder order, int factor) throws IllegalArgumentException {
 		this.order = order;
 		this.factor = factor;
 		

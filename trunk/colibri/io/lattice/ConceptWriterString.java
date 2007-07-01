@@ -10,6 +10,11 @@ import colibri.lib.Lattice;
 import colibri.lib.Traversal;
 
 
+/**
+ * Class for exporting the edges of a lattice to a file.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class ConceptWriterString {
 	public void write (Lattice lattice, File file, Traversal traversal) throws IOException {
 		FileWriter writer = new FileWriter(file);

@@ -5,24 +5,24 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
-import experimental.lib.SafeComparableTreeSet;
-
 
 
 /**
  * A class that implements the interface <code>Relation</code> using
  * <code>TreeSet</code> objects.
-*/
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class TreeRelation extends StdRelation {
 	/**
-	 * Constructs a new empty relation sorted according to the natural order of its elements
+	 * Constructs a new empty relation sorted according to the natural order of its elements.
 	 */
 	public TreeRelation () {
 		objectMap = new TreeMap<Comparable, ComparableSet>();
 		attributeMap = new TreeMap<Comparable, ComparableSet>();
 		
-		allObjects = new SafeComparableTreeSet();
-		allAttributes = new SafeComparableTreeSet();
+		allObjects = new ComparableTreeSet();
+		allAttributes = new ComparableTreeSet();
 	}
 	
 	
@@ -34,8 +34,12 @@ public class TreeRelation extends StdRelation {
 	 * <code>a</code> that are contained in <code>coll</code>
 	 * the pair (<code>o</code>, <code>a</code>) is contained in
 	 * this relation.
-	 * @param set the set of attributes 
-	 * @return the set of objects that all have the attributes contained in set
+	 * @param attributes a collection of attributes. 
+	 * @return the set of objects that have all the attributes
+	 * contained in the collection <code>attributes</code>.
+	 * @throws IllegalArgumentException if <code>attributes</code> is <code>null</code>
+	 * one of the elements contained in <code>attributes</code> is not
+	 * contained in the attribute set of this relation.
 	 */
 	public ComparableSet commonObjects(Collection<Comparable> attributes) throws IllegalArgumentException {
 		if (attributes == null)
@@ -47,7 +51,7 @@ public class TreeRelation extends StdRelation {
 			return getAllObjects();
 		}
 					
-		ComparableSet objectSet = new SafeComparableTreeSet();
+		ComparableSet objectSet = new ComparableTreeSet();
 		
 		try {
 			Comparable attr = attributeIterator.next();
@@ -76,8 +80,12 @@ public class TreeRelation extends StdRelation {
 	 * <code>o</code> that are contained in <code>coll</code>
 	 * the pair (<code>o</code>, <code>a</code>) is contained in
 	 * this relation.
-	 * @param set the set of objects
-	 * @return the set of attributes all objects contained in set have
+	 * @param objects a collection of objects.
+	 * @return the set of attributes all objects contained in the
+	 * collection <code>objects</code> have.
+	 * @throws IllegalArgumentException if <code>objects</code> is <code>null</code>
+	 * or one of the elements contained in <code>objects</code> is not
+	 * contained in the object set of this relation.
 	 */
 	public ComparableSet commonAttributes(Collection<Comparable> objects) throws IllegalArgumentException {
 		if (objects == null)
@@ -90,7 +98,7 @@ public class TreeRelation extends StdRelation {
 			return getAllAttributes();
 		}
 		
-		ComparableSet attributeSet = new SafeComparableTreeSet();
+		ComparableSet attributeSet = new ComparableTreeSet();
 		
 		try {
 			Comparable obj = objectIterator.next();
@@ -123,9 +131,14 @@ public class TreeRelation extends StdRelation {
 	 * Similarly, if <code>attribute</code> is <code>null</code> no pair will be
 	 * added to this relation but <code>object</code> will be added to the
 	 * attribute set of this relation.
-	 * @param object the object. If this is <code>null</code>, only the attribute will be added
-	 * @param attribute the attribute. If this is null, only the object will be added to the
-	 * 
+	 * @param object the object. If this is <code>null</code>, only the <code>attribute</code> will be added
+	 * to the attribute set.
+	 * @param attribute the attribute. If this is null, only the <code>object</code> will be added
+	 * to the object set
+	 * @throws ClassCastException if <code>object</code> is not mutually comparable with the objects contained
+	 * in the object set of this relation or <code>attribute</code> is not mutually comparable with the
+	 * attributes contained in the attribute set of this relation.
+	 * @throws UnsupportedOperationException if this relation is write protected.
 	 */
 	public void add(Comparable object, Comparable attribute) throws ClassCastException {
 		
@@ -135,14 +148,14 @@ public class TreeRelation extends StdRelation {
 		
 		//add the object
 		if (object != null && !allObjects.contains(object)) {
-			ComparableSet set = new SafeComparableTreeSet();
+			ComparableSet set = new ComparableTreeSet();
 			objectMap.put(object, set);
 			allObjects.add(object);
 		}
 		
 		//add the attribute
 		if (attribute != null && !allAttributes.contains(attribute)) {
-			ComparableSet set = new SafeComparableTreeSet();
+			ComparableSet set = new ComparableTreeSet();
 			attributeMap.put(attribute, set);
 			allAttributes.add(attribute);
 		}

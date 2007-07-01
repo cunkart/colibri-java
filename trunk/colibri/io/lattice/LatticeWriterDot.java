@@ -10,6 +10,12 @@ import colibri.lib.Lattice;
 import colibri.lib.Traversal;
 
 
+/**
+ * Class for exporting a lattice to a .dot file. The current implementation
+ * is suitable for small lattices only.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class LatticeWriterDot {
 	public void write(Lattice lattice, File file, String setSeparator, String elementSeparator) throws IOException {
 		write(lattice, file, setSeparator, elementSeparator, Traversal.TOP_ATTR);

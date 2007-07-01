@@ -9,7 +9,11 @@ import colibri.lib.TreeRelation;
 
 
 
-
+/**
+ * Class for importing a binary relation from a .con file.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class RelationReaderCON  {
 	
 	public Relation read(String fileName) throws SAXException, IOException {

@@ -23,7 +23,13 @@ import colibri.lib.Traversal;
 import colibri.lib.TreeRelation;
 
 
-
+/**
+ * Imports a binary relation from a .con or .xml file and
+ * outputs the edges of the corresponding lattice or
+ * the edges returned by the violation iterator.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
+ */
 public class Analyzer {
 	
 	public static void main (String[] args) {

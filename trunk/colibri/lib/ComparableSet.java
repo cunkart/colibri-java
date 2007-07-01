@@ -1,5 +1,4 @@
 package colibri.lib;
-import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -38,10 +37,10 @@ import java.util.Set;
  * the other set.
  * <p>
  * Thus, a subset always lexically precedes its superset. However,
- * the converse is not true, i.e. the lexically smaller set is not
+ * the converse is not true, i.e.&nbsp;the lexically smaller set is not
  * always a subset of a set that is lexically greater.
  * @author Daniel N. Goetzmann
- *
+ * @version 1.0
  */
 public interface ComparableSet extends Set<Comparable>, Comparable, Cloneable {
 	/**
@@ -66,7 +65,7 @@ public interface ComparableSet extends Set<Comparable>, Comparable, Cloneable {
 	
 	/**
 	 * Returns <code>true</code> if this set contains none of the elements
-	 * of the specified argument set, i.e. if the sets are <i>disjoint</i>.
+	 * of the specified argument set, i.e.&nbsp;if the sets are <i>disjoint</i>.
 	 * @param set set to be checked for being disjoint with this set.
 	 * @return <code>true</code> if this set contains none of the elements of the
 	 * specified argument set.
@@ -91,7 +90,7 @@ public interface ComparableSet extends Set<Comparable>, Comparable, Cloneable {
 	 * Activates write protection on this set.
 	 * <p>
 	 * After this method has been called, this set shall be unmodifiable,
-	 * i.e. if there is a call attempting to change the contents of 
+	 * i.e.&nbsp;if there is a call attempting to change the contents of 
 	 * this set, an exception will be thrown.
 	 * @return <code>true</code> iff write protection is activated.
 	 */
@@ -108,7 +107,7 @@ public interface ComparableSet extends Set<Comparable>, Comparable, Cloneable {
 	 * the other set.
 	 * <p>
 	 * Thus, a subset always lexically precedes its superset. However,
-	 * the converse is not true, i.e. the lexically smaller set is not
+	 * the converse is not true, i.e.&nbsp;the lexically smaller set is not
 	 * always a subset of a set that is lexically greater.
 	 * @param anotherSet the <code>ComparableSet</code> to be compared.
 	 * @return the value 0 if the argument set is equal to this set;
@@ -117,13 +116,4 @@ public interface ComparableSet extends Set<Comparable>, Comparable, Cloneable {
 	 * lexically greater than the argument set.
 	 */
 	public int compareTo(Object anotherSet);
-	
-	
-	public boolean add(Comparable arg0) throws UnmodifiableSetException;
-	
-	public boolean addAll(Collection<? extends Comparable> arg0) throws UnmodifiableSetException;
-	public void clear() throws UnmodifiableSetException;
-	public boolean remove(Object arg0) throws UnmodifiableSetException;
-	public boolean removeAll(Collection<?> arg0) throws UnmodifiableSetException;
-	public boolean retainAll(Collection<?> arg0) throws UnmodifiableSetException;
 }

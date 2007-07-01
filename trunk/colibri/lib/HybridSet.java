@@ -8,10 +8,11 @@ import java.util.Iterator;
  * A class that uses a <code>BitSet</code> as internal data structure
  * for fast performance but behaves like a <code>ComparableSet</code>
  * to the outside and can therefore be used with the standard implementation
- * of formal concept analysis.
- *
+ * of <code>LatticeImpl</code>.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
-public class HybridSet implements ComparableSet {
+class HybridSet implements ComparableSet {
 	
 	private BitSet bitset;
 	private int size;

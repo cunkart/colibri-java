@@ -1,11 +1,10 @@
 package colibri.lib;
 
 /**
- * A <code>Lattice</code> that uses a <code>HybridRelation</code>. The relation
- * passed to it in the constructor will first be translated into
- * a <code>HybridRelation</code>. Thus it is possible to benefit
- * from faster performance of bitsets.
- *
+ * A fast implementation of the <code>Lattice</code> interface. It uses
+ * a data structure based on bitsets internally.
+ * @author Daniel N. Goetzmann
+ * @version 1.0
  */
 public class HybridLattice extends LatticeImpl {
 	/**
